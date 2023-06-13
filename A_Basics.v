@@ -1,4 +1,4 @@
-  Inductive day : Type :=
+Inductive day : Type :=
   | monday
   | tuesday
   | wednesday
