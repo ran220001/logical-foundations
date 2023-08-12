@@ -106,3 +106,101 @@ Proof.
     + reflexivity. Qed.
 
 (* End of exercise 4 *)
+
+(* Exercise 5: destruct_induction (optional) *)
+
+(* End of exercise 5 *)
+
+Theorem mult_0_plus' : forall n m : nat,
+  (n + 0 + 0) * m = n * m.
+Proof.
+  intros n m.
+  assert (H: n + 0 + 0 = n).
+    { rewrite add_comm. simpl. rewrite add_comm. reflexivity. }
+  rewrite -> H.
+  reflexivity. Qed.
+
+Theorem plus_rearrange_firsttry : forall n m p q : nat,
+  (n + m) + (p + q) = (m + n) + (p + q).
+Proof.
+  intros n m p q.
+  rewrite add_comm.
+Abort.
+
+Theorem plus_rearrange : forall n m p q : nat,
+  (n + m) + (p + q) = (m + n) + (p + q).
+Proof.
+  intros n m p q.
+  assert (H: n + m = m + n).
+  { rewrite add_comm. reflexivity. }
+  rewrite H. reflexivity. Qed.
+
+Theorem add_assoc' : forall n m p : nat,
+  n + (m + p) = (n + m) + p.
+Proof. intros n m p. induction n as [| n' IHn']. reflexivity.
+  simpl. rewrite IHn'. reflexivity. Qed.
+
+Theorem add_assoc'' : forall n m p : nat,
+  n + (m + p) = (n + m) + p.
+Proof.
+  intros n m p. induction n as [| n' IHn'].
+  - (* n = 0 *)
+    reflexivity.
+  - (* n = S n' *)
+    simpl. rewrite IHn'. reflexivity. Qed.
+
+(* Exercise 6: add_comm_informal *)
+
+(*
+Theorem: Addition is commutative.
+
+Proof: Let there be any n and m. We must prove that n + m = m + n.
+We will prove this by induction on n.
+First, suppose n = 0. We must show that
+  0 + m = m + 0.
+By the definition of +, we have
+  m = m + 0.
+Using the theorem n + 0 = n, we have
+  m = m.
+Therefore, 0 + m = m + 0.
+
+Next, suppose n = S n', where
+  n' + m = m + n'.
+We must now show that
+  (S n') + m = m + (S n').
+By the definition of +, we have
+  S (n' + m) = m + (S n').
+Using the theorem S (n + m) = n + (S m), we have
+  S (n' + m) = S (m + n').
+Rewriting using the induction hypothesis, we get
+  S (n' + m) = S (n' + m). Qed.
+*)
+
+(* Do not modify the following line: *)
+Definition manual_grade_for_add_comm_informal : option (nat*string) := None.
+
+(* End of exercise 6 *)
+
+(* Exercise 7: eqb_refl_informal *)
+
+(*
+Theorem: (n =? n) = true for any n.
+
+Proof: By induction on n.
+First, suppose n = 0. We must show that
+  (0 =? 0) = true.
+This follows directly from the definition of =?.
+
+Next, suppose n = S n', where
+  (n' =? n') = true.
+We must now show that
+  (S n' =? S n') = true.
+By the definition of natural numbers, this follows from
+  (n' =? n') = true,
+which is immediate from the induction hypothesis. Qed.
+*)
+
+(* Do not modify the following line: *)
+Definition manual_grade_for_eqb_refl_informal : option (nat*string) := None.
+
+(* End of exercise 7 *)
