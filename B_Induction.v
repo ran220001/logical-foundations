@@ -109,6 +109,12 @@ Proof.
 
 (* Exercise 5: destruct_induction (optional) *)
 
+(*
+The difference between the tactics `destruct` and `induction`:
+While both tactics deconstruct their variables and generate several subgoals,
+`induction` also provides an induction hypothesis.
+*)
+
 (* End of exercise 5 *)
 
 Theorem mult_0_plus' : forall n m : nat,
